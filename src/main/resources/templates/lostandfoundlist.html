@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/liststylesheet.css">
+    <link rel="stylesheet" href="css/liststylesheet.css">
+    <link rel="stylesheet" href="css/navbarstylesheet.css">
+    <link rel="stylesheet" href="../static/css/navbarstylesheet.css">
+
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+<h1>Lost and Found List</h1>
+<table class="flat-table">
+    <tbody>
+    <tr>
+        <th>Head 1</th>
+        <th>Head 2</th>
+        <th>Head 3</th>
+        <th>Head 4</th>
+        <th>Head 5</th>
+    </tr>
+    <tr>
+        <td>Example 1</td>
+        <td>Example 2</td>
+        <td>Example 3</td>
+        <td>Example 4</td>
+        <td>Example 5</td>
+    </tr>
+    <tr>
+        <td>Example 6</td>
+        <td>Example 7</td>
+        <td>Example 8</td>
+        <td>Example 9</td>
+        <td>Example 10</td>
+    </tr>
+    </tbody>
+</table>
+<div th:replace="base :: js"></div>
+</body>
+</html>

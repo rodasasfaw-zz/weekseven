@@ -1,0 +1,19 @@
+body {background-color: MediumSlateBlue;}
+h1 {background-color:darkgray;}
+ul {color: yellow;}
+a {color: green;}
+a:hover {color: pink;}
+
+h1 {text-align: center;}
+
+
+body {
+    background-image: url("https://media.giphy.com/media/aGeePr7nv6ra8/giphy.gif");
+}
+
+h2 {color: red;}
+p{color:blue;}
+
+h1 {font-size: 80px;}
+
+body {font-family: "Comic Sans MS";}
