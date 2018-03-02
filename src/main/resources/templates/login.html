@@ -9,26 +9,26 @@
     <link rel="stylesheet" href="css/loginstylesheet.css">
     <link rel="stylesheet" href="css/stylesheet.css">
 
-
 </head>
 <body>
 <div>
 <h1>Lost and Found</h1>
-<div class="innerRightBlurred"></div>
+
 <div class="innerRight">
     <div class="row">
         <h1 class="text-center login-title"></h1>
         <div class="account-wall">
             <img class="profile-img" src="https://yt3.ggpht.com/-_tpjHFS11uI/AAAAAAAAAAI/AAAAAAAAAAA/pY-AjQcO2y0/s900-c-k-no-mo-rj-c0xffffff/photo.jpg" width="150" height="150">
-            <form class="form-signin">
-                <input type="text" class="form-control" placeholder="User Name" required autofocus>
-                <input type="password" class="form-control" placeholder="Password" required>
-                <button class="btn btn-lg btn-primary btn-block sign-in" type="submit">
+
+            <form class="form-signin" th:action="@{/login}">
+                <input type="text" class="form-control" placeholder="User Name" th:field="${username}">
+                <input type="password" class="form-control" placeholder="Password" th:field="${password}">
+                <button class="btn btn-lg btn-primary btn-block sign-in" type="submit" button/>
                     Sign in
                 </button>
 
             </form>
-            <a href="#" class="text-center new-account">Create an account </a>
+            <a th:href="@{/signup}" class="text-center new-account">Create an account </a>
         </div>
     </div>
 </div>

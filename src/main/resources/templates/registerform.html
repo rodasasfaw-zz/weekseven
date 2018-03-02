@@ -10,19 +10,17 @@
 <div class="testbox">
     <h1>Registration</h1>
 
-    <form action="/">
-        <hr>
-
-        <hr>
-
-        <input type="text" name="name" id="name" placeholder="First Name" required/>
-        <input type="text" name="name" id="name" placeholder="Last Name" required/>
-        <input type="text" name="name" id="name" placeholder="Email" required/>
-        <input type="text" name="name" id="name" placeholder="User Name" required/>
-        <input type="password" name="name" id="name" placeholder="Password" required/>
+    <form th:action="@{/signup}" th:object="${newusers}" method="post">
 
 
-        <a href="#" class="button">Register</a>
+        <input type="text" name="firstname" id="firstname" placeholder="First Name"  th:field="*{firstname}"/>
+        <input type="text" name="lastname" id="lastname" placeholder="Last Name" th:field="*{lastname}"/>
+        <input type="email" name="email" id="email" placeholder="Email" th:field="*{email}"/>
+        <input type="text" name="username" id="username" placeholder="User Name" th:field="*{username}"/>
+        <input type="password" name="password" id="password" placeholder="Password" th:field="*{password}"/>
+
+
+        <button type="submit" class="button">Register</button>
     </form>
 </div>
 

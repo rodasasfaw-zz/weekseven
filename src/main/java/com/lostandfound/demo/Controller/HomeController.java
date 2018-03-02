@@ -5,15 +5,12 @@ import com.lostandfound.demo.Model.Item;
 import com.lostandfound.demo.Repository.AppUserRepository;
 import com.lostandfound.demo.Repository.ItemRepository;
 import com.lostandfound.demo.Repository.RoleRepository;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,6 +24,13 @@ public class HomeController{
     @Autowired
     ItemRepository itemRepository;
 
+
+    @RequestMapping("/")
+    public String index(){
+        return "index";
+    }
+
+
     @RequestMapping("/login")
     public String login(Model model){
         return "login";
@@ -35,17 +39,18 @@ public class HomeController{
     @GetMapping("/newuser")
     public String newUser(Model model){
         model.addAttribute("appUser", new AppUser());
+
         return "UserForm";
     }
 
     @PostMapping("/signup")
-    public String processUser(@Valid @ModelAttribute("appUser") AppUser appUser, BindingResult result){
+    public String processUser(@Valid @ModelAttribute("newuser") AppUser newusers, BindingResult result){
         if(result.hasErrors())
         {
             return "registerform";
         }
-        appUser.addRole(roleRepository.findByRoleName("USER"));
-        appUserRepository.save(appUser);
+        newusers.addRole(roleRepository.findByRoleName("USER"));
+        appUserRepository.save(newusers);
         return "redirect:/login";
     }
 
@@ -57,42 +62,59 @@ public class HomeController{
         return "lostitemform";
     }
 
-    @PostMapping("/addlostitem")
-    public String addPotLuckInfo(@Valid @ModelAttribute("lostitem") Item lostitems, Model model,BindingResult result, Authentication auth) {
+    @PostMapping("/showlostitem")
+    public String showlostItem(@Valid @ModelAttribute("lostitem") Item items, Model model,BindingResult result, Authentication auth) {
         if (result.hasErrors()) {
             return "lostitemform";
         }
-        AppUser appUser = appUserRepository.findAppUserByUsername(auth.name());
-        lostitems.addAppUser(appUser);
-        itemRepository.save(lostitems);
 
-        return "redirect:/";
-    }
+        AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
+        itemRepository.save(items);
+        appUser.additem(items);
+        appUserRepository.save(appUser);
 
-    @RequestMapping("/")
-    public String homePage(){
+        model.addAttribute("lostitem", itemRepository.findAll());
 
-        return "index";
-    }
-    @RequestMapping("/signup")
-    public String signup(){
-
-        return "registerform";
-    }
-    @RequestMapping("/login")
-    public String login(){
-
-        return "login";
-    }
-    @RequestMapping("/list")
-    public String list(){
 
         return "lostandfoundlist";
     }
-    @RequestMapping("/addlost")
-    public String lostform(){
+
+
+
+
+    @GetMapping("/addfoundlistitem/{id}")
+    public String additemtofoundlist(@PathVariable("id") long id, Model model, Authentication auth){
+
+        Item item = itemRepository.findOne(id);
+
+        AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
+        appUser.additem(item);
+        item.setStatus("Found");
+        model.addAttribute("fitemslist", itemRepository.findOne(id));
+        itemRepository.save(item);
+        appUserRepository.save(appUser);
+        model.addAttribute("lostitem", itemRepository.findAll());
+        return "lostitemlist";
+    }
+
+    @GetMapping("/list")
+
+
+
+    @RequestMapping("/edit/{id}")
+    public String editlostItem(@PathVariable("id") long id, Model model, Authentication auth){
+
+        model.addAttribute("lostitem",itemRepository.findOne(id));
 
         return "lostitemform";
+    }
+
+
+    @RequestMapping("/delete/{id}")
+    public String deleteLostItem(@PathVariable("id") long id , Model model, Authentication auth){
+        model.addAttribute("lostitem",itemRepository.findOne(id));
+
+        return "redirect:/";
     }
 
 }

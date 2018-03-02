@@ -23,14 +23,12 @@
         <th>Status</th>
         <th>Admin</th>
     </tr>
-    <tr th:each="item: ${lostitem}">
+    <tr th:each="item: ${fitemslist}">
         <td><img th:src="${item.image}" width="50" height="50"></td>
         <td th:text="${item.title}"></td>
         <td th:text="${item.category}"></td>
         <td th:text="${item.description}"></td>
         <td th:text ="${item.status}"></td>
-        <td><a  th:href="@{/addfoundlistitem/{id}(id=${item.id})}"> Add Item to Found </a>
-        </td>
     </tr>
 
     </tbody>

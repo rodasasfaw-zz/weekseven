@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+
 @Component
 public class DataLoader implements CommandLineRunner {
     @Autowired
@@ -29,29 +30,38 @@ public class DataLoader implements CommandLineRunner {
         roleRepository.save(new Role("USER"));
         roleRepository.save(new Role("ADMIN"));
 
-        Role adminRole = roleRepository.findByRoleName("ADMIN");
-        Role userRole = roleRepository.findByRoleName("USER");
+       Role adminRole = roleRepository.findByRoleName("ADMIN");
+       Role userRole = roleRepository.findByRoleName("USER");
 
 
         AppUser user1 = new AppUser("rodas","asfaw", "rodas4@gmail.com", "rod","password");
-        user1.setRoles(Arrays.asList(userRole));
+       user1.setRoles(Arrays.asList(userRole));
+        Item item = new Item("cat", "http://www.catbreedslist.com/uploads/allimg/cat-pictures/Persian-Cat-1.jpg", "pet","white, persian breed","Lost");
+        itemRepository.save(item);
+        user1.additem(item);
         appUserRepository.save(user1);
 
         AppUser user2 = new AppUser("samuel","jack", "sam@gmail.com", "sam","pass");
         user2.setRoles(Arrays.asList(userRole));
+        Item item2 = new Item("t-shirt", "https://uniqlo.scene7.com/is/image/UNIQLO/goods_08_180703?$prod$", "cloth","grey color","Lost");
+        itemRepository.save(item2);
+        user2.additem(item2);
         appUserRepository.save(user2);
 
 
-        AppUser user3 = new AppUser("ted","mosby", "ted@gmail.com", "ted","pass");
-        user3.setRoles(Arrays.asList(adminRole));
-        appUserRepository.save(user3);
+//        AppUser user3 = new AppUser("ted","mosby", "ted@gmail.com", "ted","pass");
+//        user3.setRoles(Arrays.asList(adminRole));
+//
+//
+//        Item item2 = new Item("cat", "http://www.catbreedslist.com/uploads/allimg/cat-pictures/Persian-Cat-1.jpg", "pet","white, persian breed","Lost");
+//        itemRepository.save(item2);
+//
+//        Item item3 = new Item("watch", "http://www.cartier.com/content/dam/rcq/car/59/07/43/590743.png","other"," cartier,leather strap","Lost" );
+//        itemRepository.save(item3);
 
-        Item item = new Item("t-shirt", "https://wordans-mxelda46illwc0hq.netdna-ssl.com/files/model_specifications/2016/1/6/189993/189993_big.jpg?1452127037", "cloth","grey color");
-        itemRepository.save(item);
-        Item item2 = new Item("cat", "http://cdn1-www.cattime.com/assets/uploads/gallery/persian-cats-and-kittens/persian-cats-and-kittens-8.jpg", "pet","white, persian breed");
-        itemRepository.save(item2);
-        Item item3 = new Item("watch", "https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/4/2/42/hermes/42-hermes-fauve-singletour-s3-grid?wid=270&hei=275&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1504647832173","other"," leather strap" );
-        itemRepository.save(item3);
+
+
+
 
 
 

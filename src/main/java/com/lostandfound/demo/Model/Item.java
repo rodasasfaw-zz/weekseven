@@ -1,9 +1,7 @@
 package com.lostandfound.demo.Model;
-
-import org.springframework.web.bind.annotation.GetMapping;
-
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Item {
@@ -14,17 +12,21 @@ public class Item {
     private String image;
     private String category;
     private String description;
-    @ManyToMany
-    private Collection<AppUser> appUsers;
+    private String status = "lost";
+    @ManyToMany(mappedBy = "items")
+    private Set<AppUser> appUsers;
 
     public Item() {
+   this.appUsers = new HashSet<>();
     }
 
-    public Item(String title, String image, String category, String description) {
+    public Item(String title, String image, String category, String description, String status) {
         this.title = title;
         this.image = image;
         this.category = category;
         this.description = description;
+        this.status = status;
+        this.appUsers = new HashSet<>();
     }
 
     public long getId() {
@@ -67,14 +69,27 @@ public class Item {
         this.description = description;
     }
 
-    public Collection<AppUser> getAppUsers() {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+    public Set<AppUser> getAppUsers() {
         return appUsers;
     }
 
-    public void setAppUsers(Collection<AppUser> appUsers) {
+    public void setAppUsers(Set<AppUser> appUsers) {
         this.appUsers = appUsers;
     }
-    public void addAppUser(AppUser a){
-        appUsers.add(a);
+
+    public void additemtouser(AppUser u){
+
+        this.appUsers.add(u);
     }
+
 }
+

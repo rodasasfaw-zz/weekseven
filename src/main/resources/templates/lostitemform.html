@@ -12,26 +12,32 @@
 <body>
 <div th:replace="base :: navlinks"></div>
 <div class="container">
-    <form id="contact" action="" method="post">
-        <h3>Quick Contact</h3>
-        <h4>Contact us today, and get reply with in 24 hours!</h4>
+    <form  id = "contact" action="#" th:action="@{/showlostitem}"  th:object="${lostitem}" method="post">
+
+        <h4>Lost Item information</h4>
+        <input type="hidden" th:field="*{id}"/>
+
         <fieldset>
-            <input placeholder="Your name" type="text" tabindex="1" required autofocus>
+            <input placeholder="image" type="text" th:field="*{image}" tabindex="1">
         </fieldset>
         <fieldset>
-            <input placeholder="Your Email Address" type="email" tabindex="2" required>
+            <input placeholder="title" type="text" th:field="*{title}" tabindex="2">
+        </fieldset>
+                   <h4>Category</h4>
+        <select th:field="*{category}" name="category">
+            <option value="Clothes">Clothes</option>
+            <option value="Pets">Pets</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <fieldset>
+            <textarea placeholder="type description here...." th:field="*{description}" tabindex="5"></textarea>
         </fieldset>
         <fieldset>
-            <input placeholder="Your Phone Number" type="tel" tabindex="3" required>
+            <input placeholder="status" type="text" th:field="*{status}" tabindex="3">
         </fieldset>
         <fieldset>
-            <input placeholder="Your Web Site starts with http://" type="url" tabindex="4" required>
-        </fieldset>
-        <fieldset>
-            <textarea placeholder="Type your Message Here...." tabindex="5" required></textarea>
-        </fieldset>
-        <fieldset>
-            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+            <button type="submit" id="contact-submit"  data-submit="...Sending">Submit</button>
         </fieldset>
     </form>
 
