@@ -14,7 +14,7 @@
 <body>
 <div th:replace="base :: navlinks"></div>
 <div class="container">
-    <form  id = "contact" action="#" th:action="@{/showlostitem}"  th:object="${lostitem}" method="post">
+    <form  id = "contact"  th:action="@{/showadminaddeditems}"  th:object="${lostitem}" method="post">
 
         <h4>Lost Item information</h4>
         <input type="hidden" th:field="*{id}"/>
@@ -39,13 +39,15 @@
             <input placeholder="status" type="text" th:field="*{status}" tabindex="3">
         </fieldset>
         <label>Select a User</label>
-        <div sec:authorize="hasAuthority('ADMIN')" >
-        <select id="selectauser" class="form-control" name="loggedinuserslist">
-            <option th:each="appuser : ${loggedinuser}"
-                    th:value="${appuser.id}"
-                    th:text="${appuser.getUsername()}"></option>
-        </select>
-        </div>
+
+            <select id="users" name="loggedinuser" class="selectpicker">
+                <option th:each="appuser : ${loggedinusers}"
+                        th:value="${appuser.id}"
+                        th:text="${appuser.getUsername()}" selected="selected"></option>
+            </select>
+
+
+
         <fieldset>
             <button type="submit" id="contact-submit"  data-submit="...Sending">Submit</button>
         </fieldset>

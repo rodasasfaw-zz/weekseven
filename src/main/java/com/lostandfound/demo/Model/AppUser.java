@@ -11,8 +11,6 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String firstname;
-    private String lastname;
     private String email;
     private String username;
     private String password;
@@ -22,8 +20,8 @@ public class AppUser {
             inverseJoinColumns = @JoinColumn(name="role_id"))
     private Collection<Role> roles;
 
-    @ManyToMany()
-    private Set<Item> items;
+    @ManyToMany
+    private Collection<Item> items;
 
 
     public AppUser() {
@@ -31,9 +29,8 @@ public class AppUser {
        this.items = new HashSet<>();
     }
 
-    public AppUser(String firstname, String lastname, String email, String username, String password) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public AppUser( String email, String username, String password) {
+
         this.email = email;
         this.username = username;
         this.password = password;
@@ -47,22 +44,6 @@ public class AppUser {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -97,11 +78,11 @@ public class AppUser {
         this.roles = roles;
     }
 
-    public Set<Item> getItems() {
+    public Collection<Item> getItems() {
         return items;
     }
 
-    public void setItems(Set<Item> items) {
+    public void setItems(Collection<Item> items) {
         this.items = items;
     }
 

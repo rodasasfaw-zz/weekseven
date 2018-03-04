@@ -1,38 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/stylesheet.css">
     <link rel="stylesheet" href="../static/css/loginstylesheet.css">
     <link rel="stylesheet" href="css/loginstylesheet.css">
-    <link rel="stylesheet" href="css/stylesheet.css">
+
 
 </head>
 <body>
-<div>
-<h1>Lost and Found</h1>
 
-<div class="innerRight">
-    <div class="row">
-        <h1 class="text-center login-title"></h1>
-        <div class="account-wall">
-            <img class="profile-img" src="https://yt3.ggpht.com/-_tpjHFS11uI/AAAAAAAAAAI/AAAAAAAAAAA/pY-AjQcO2y0/s900-c-k-no-mo-rj-c0xffffff/photo.jpg" width="150" height="150">
 
-            <form class="form-signin" th:action="@{/login}">
-                <input type="text" class="form-control" placeholder="User Name" th:field="${username}">
-                <input type="password" class="form-control" placeholder="Password" th:field="${password}">
-                <button class="btn btn-lg btn-primary btn-block sign-in" type="submit" button/>
-                    Sign in
-                </button>
-
-            </form>
-            <a th:href="@{/signup}" class="text-center new-account">Create an account </a>
+<div class="container">
+    <div class="card">
+        <div class="button center">
+        <a th:href="@{/register}">Create an account</a>
         </div>
+        <form th:action="@{/login}" method="post">
+
+            <fieldset>
+                <h1>Please Sign In</h1>
+
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        Invalid username and password.
+                    </div>
+                </div>
+
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">
+                        You have been logged out.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="username" id="username" class="form-control input-lg"
+                           placeholder="UserName" required="true" autofocus="true"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" id="password" class="form-control input-lg"
+                           placeholder="Password" required="true"/>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign In"/>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+
     </div>
 </div>
-</div>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

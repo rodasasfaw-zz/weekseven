@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/liststylesheet.css">
     <link rel="stylesheet" href="css/navbarstylesheet.css">
     <link rel="stylesheet" href="../static/css/navbarstylesheet.css">
+    <link rel="stylesheet" href="../static/css/loginstylesheet.css">
+    <link rel="stylesheet" href="css/loginstylesheet.css">
 
 </head>
 <body>
@@ -21,18 +23,21 @@
         <th>Category</th>
         <th>Description</th>
         <th>Status</th>
-        <th>Admin</th>
+        <th>Action</th>
     </tr>
-    <tr th:each="item: ${fitemslist}">
+    <tr th:each="item: ${lostitem}">
         <td><img th:src="${item.image}" width="50" height="50"></td>
         <td th:text="${item.title}"></td>
         <td th:text="${item.category}"></td>
         <td th:text="${item.description}"></td>
         <td th:text ="${item.status}"></td>
+        <td><a  sec:authorize="hasAuthority('ADMIN')"th:href="@{/addfoundlistitem/{id}(id=${item.id})}"> Change Status </a></td>
+
     </tr>
 
     </tbody>
 </table>
+
 <div th:replace="base :: js"></div>
 </body>
 </html>

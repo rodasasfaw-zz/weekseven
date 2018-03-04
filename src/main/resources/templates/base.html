@@ -13,12 +13,18 @@
 <body>
 <div th:fragment="navlinks">
 <ul class="nav">
-    <li class="navItem"><a href="#">Home</a></li>
-    <li class="navItem"><a href="#">About</a></li>
-    <li class="navItem"><a href="#">Blog</a></li>
-    <li class="navItem"><a href="#">Contact</a></li>
-    <li class="navItem"><a href="#">Pricing</a></li>
-    <li class="navItem"><a href="#">Support</a></li>
+
+    <li class="navItem"><a th:href="@{/}">public List</a>Home</li>
+    <li sec:authorize="hasAuthority('ADMIN')" class="navItem"><a th:href="@{/adminlist}">Admin list</a>Home</li>
+    <li class="navItem"><a th:href="@{/addlostitem}">Add lost item</a></li>
+    <li  sec:authorize="hasAuthority('ADMIN')" class="navItem"><a th:href="@{/adminaddforuser}">Add lost  item as admin</a></li>
+    <li sec:authorize="hasAuthority('USER')" class="navItem"><a th:href="@{/mylist}">My List</a></li>
+    <li ><form  class="nav-link" th:action="@{/searchlostitem}" th:object="${lostitem}" method="post">
+        <label>Search:</label><input type="text" name="search"/>
+    </form>
+    </li>
+    <li class="navItem"><a th:href="@{/login}">Sign in</a></li>
+    <li class="navItem"><a th:href="@{/logout}">Sign out</a></li>
 </ul>
 
 </div>

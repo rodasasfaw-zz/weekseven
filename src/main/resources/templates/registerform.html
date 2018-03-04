@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/regstylesheet.css">
+
+
 </head>
 <body>
 <div class="testbox">
     <h1>Registration</h1>
 
-    <form th:action="@{/signup}" th:object="${newusers}" method="post">
+    <form  th:action="@{/register}" th:object="${newuser}" method="post">
+        <hr>
 
-
-        <input type="text" name="firstname" id="firstname" placeholder="First Name"  th:field="*{firstname}"/>
-        <input type="text" name="lastname" id="lastname" placeholder="Last Name" th:field="*{lastname}"/>
-        <input type="email" name="email" id="email" placeholder="Email" th:field="*{email}"/>
-        <input type="text" name="username" id="username" placeholder="User Name" th:field="*{username}"/>
-        <input type="password" name="password" id="password" placeholder="Password" th:field="*{password}"/>
-
-
-        <button type="submit" class="button">Register</button>
+        <hr>
+        <label id="icon" for="name"><i class="icon-envelope "></i></label>
+        <input type="text" name="name" id="name" placeholder="Email"  th:field = "*{email}"required/>
+        <label id="icon" for="name"><i class="icon-user"></i></label>
+        <input type="text" name="name" id="name" placeholder=" User Name" th:field = "*{username}" required/>
+        <label id="icon" for="name"><i class="icon-shield"></i></label>
+        <input type="password" name="name" id="name" placeholder="Password"  th:field = "*{password}"required/>
+        <a class="button"><button type="submit">Register</button></a>
     </form>
 </div>
-
 <div th:replace="base :: js"></div>
 </body>
 </html>

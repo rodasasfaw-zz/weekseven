@@ -25,7 +25,7 @@
         <th>Status</th>
         <th>Action</th>
     </tr>
-    <tr th:each="item: ${lostitem}">
+    <tr th:each="item: ${searchlostitem}">
         <td><img th:src="${item.image}" width="50" height="50"></td>
         <td th:text="${item.title}"></td>
         <td th:text="${item.category}"></td>

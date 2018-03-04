@@ -12,7 +12,7 @@ public class Item {
     private String image;
     private String category;
     private String description;
-    private String status = "lost";
+    private String status = "Lost";
     @ManyToMany(mappedBy = "items")
     private Set<AppUser> appUsers;
 
@@ -86,10 +86,10 @@ public class Item {
         this.appUsers = appUsers;
     }
 
-    public void additemtouser(AppUser u){
-
-        this.appUsers.add(u);
-    }
+//    public void addappusertoItem(AppUser a){
+//
+//        this.appUsers.add(a);
+//    }
 
 }
 

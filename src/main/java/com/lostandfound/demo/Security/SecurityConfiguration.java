@@ -26,22 +26,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/register","/css/**","/vendor/**","/js/**","/img/**","/static/**","/templates/**").permitAll()
-                .antMatchers("/").hasAnyAuthority("USER","ADMIN")
+                .antMatchers("/register","/","/css/**","/js/**","/img/**","/static/**","/templates/**").permitAll()
+                .antMatchers("/addlostitem").hasAnyAuthority("USER","ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
-               .successForwardUrl("/")
+                .formLogin().defaultSuccessUrl("/mylist").loginPage("/login").permitAll()
                 .and()
-
-
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll().logoutSuccessUrl("/");
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login").permitAll().permitAll()
+                .and()
+                .httpBasic();
+              http
+                .csrf().disable();
+              http
+                .headers().frameOptions().disable();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("password").authorities("USER");
-        auth.inMemoryAuthentication().withUser("user").password("password").authorities("USER");
+        auth.inMemoryAuthentication().withUser("user").password("pass").authorities("USER");
+        auth.inMemoryAuthentication().withUser("admin").password("pass").authorities("ADMIN");
 
 
         auth.userDetailsService(userDetailsServiceBean());
