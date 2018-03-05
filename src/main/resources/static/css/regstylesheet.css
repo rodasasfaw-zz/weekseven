@@ -49,6 +49,10 @@ h1 {
     -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
     box-shadow: 1px 2px 5px rgba(0,0,0,.31);
     border: solid 1px #cbc9c9;
+    text-align: center;
+    margin-top: 10%
+
+
 }
 
 input[type=radio] {
@@ -140,4 +144,5 @@ a.button {
 
 body {
     background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/IjFi-wx/moving-stars-on-black-black-background_v15aai_9__F0000.png");
+
 }

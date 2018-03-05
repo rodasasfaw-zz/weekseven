@@ -2,7 +2,6 @@ package com.lostandfound.demo.Controller;
 
 import com.lostandfound.demo.Model.AppUser;
 import com.lostandfound.demo.Model.Item;
-import com.lostandfound.demo.Model.Role;
 import com.lostandfound.demo.Repository.AppUserRepository;
 import com.lostandfound.demo.Repository.ItemRepository;
 import com.lostandfound.demo.Repository.RoleRepository;
@@ -15,9 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Controller
@@ -31,32 +27,13 @@ public class HomeController {
 
 
     @RequestMapping("/")
-    public String indexx(Model model, Authentication auth) {
+    public String index(Model model, Authentication auth) {
 
         model.addAttribute("lostitem",itemRepository.findAllByStatus("Lost"));
 
-        return "lostandfoundlist";
-
-
-    }
-    @RequestMapping("/adminlist")
-    public String index(Model model, Authentication auth) {
-        model.addAttribute("lostitem",itemRepository.findAll());
-
-        return "adminlostandfoundlist";
+        return "lostitemlist";
 
     }
-
-    @RequestMapping("/mylist")
-    public String userlist(Model model, Authentication auth) {
-        AppUser currentuser = appUserRepository.findAppUserByUsername(auth.getName());
-
-        model.addAttribute("lostitem", itemRepository.findByAppUsers(currentuser));
-        return "lostandfoundlist";
-
-
-    }
-
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -94,28 +71,94 @@ public class HomeController {
             return "lostitemform";
         }
 
- if (items.getImage().isEmpty()){
-            if(items.getCategory().equalsIgnoreCase("Clothes")){
+        if (items.getImage().isEmpty()){
+            if(items.getCategory().equals("Clothes")){
                 items.setImage("https://getthelabel.btxmedia.com/pws/client/images/landing-pages/mens/2017/310717/knitwear.jpg");
             }
-            if(items.getCategory().equalsIgnoreCase("Pets")){
+            else if (items.getCategory().equals("Pets")){
                 items.setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxb9vQmD4Pn_OapoWNSjzf_pT5FZLa4pg60oqSuRs6QAavAAKc");
             }
-            if(items.getCategory().equalsIgnoreCase("Other")){
+            else{
                 items.setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4uFAtuoJaEjS96aI7bHq01YVojEGF3HzyxA87JynYUQ_Qy5llFA");
             }
         }
 
         AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
+
         itemRepository.save(items);
-       appUser.additem(items);
+        appUser.additem(items);
         appUserRepository.save(appUser);
 
         model.addAttribute("lostitem", itemRepository.findAll());
 
 
-        return "redirect:/";
+        return "lostitemlist";
     }
+
+
+    @GetMapping("/adminaddforuser")
+    public String adminaddforuser(Model model) {
+
+        model.addAttribute("lostitem", new Item());
+        model.addAttribute("loggedinusers", appUserRepository.findAll());
+        return "adminlostitemform";
+    }
+    @PostMapping("/adminaddforuser")
+    public String adminaddforusers( @Valid @ModelAttribute("lostitem") Item items,
+                                    @RequestParam( "loggedinuser")long userid, BindingResult result,
+                                    Model model) {
+
+        if (result.hasErrors()) {
+
+            return "adminlostitemform";
+        }
+
+        if (items.getImage().isEmpty()){
+            if(items.getCategory().equals("Clothes")){
+                items.setImage("https://getthelabel.btxmedia.com/pws/client/images/landing-pages/mens/2017/310717/knitwear.jpg");
+            }
+           else if (items.getCategory().equals("Pets")){
+                items.setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxb9vQmD4Pn_OapoWNSjzf_pT5FZLa4pg60oqSuRs6QAavAAKc");
+            }
+            else{
+                items.setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4uFAtuoJaEjS96aI7bHq01YVojEGF3HzyxA87JynYUQ_Qy5llFA");
+            }
+        }
+
+
+        itemRepository.save(items);
+        AppUser newappuser = appUserRepository.findAppUserById(userid);
+        newappuser.additem(items);
+
+        appUserRepository.save(newappuser);
+
+        model.addAttribute("lostitem", itemRepository.findAll());
+
+        return "lostitemlist";
+
+    }
+
+
+
+    @RequestMapping("/mylist")
+    public String userlist( Model model, Authentication auth) {
+
+        AppUser currentuser = appUserRepository.findAppUserByUsername(auth.getName());
+        model.addAttribute("lostitem", itemRepository.findByAppUsers(currentuser));
+        return "mylostorfoundlist";
+
+
+    }
+
+
+    @RequestMapping("/adminlist")
+    public String showadminList(Model model, Authentication auth) {
+        model.addAttribute("lostitem",itemRepository.findAll());
+
+        return "adminlostandfoundlist";
+
+    }
+
 
 
     @RequestMapping("/addfoundlistitem/{id}")
@@ -133,34 +176,9 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @GetMapping("/adminaddforuser")
-    public String adminaddforuser(Model model) {
 
-        //Iterable<AppUser> loggedinuserslist = appUserRepository.findAll();
-        model.addAttribute("lostitem", new Item());
-        model.addAttribute("loggedinusers", appUserRepository.findAll());
-        return "adminlostitemform";
-    }
-    @PostMapping("/showadminaddeditems")
-    public String adminaddforusers( @Valid @ModelAttribute("lostitem") Item items,
-                                    @RequestParam( "loggedinuser")long userid, BindingResult result,
-                                    Model model) {
 
-        if (result.hasErrors()) {
 
-            return "adminlostitemform";
-        }
-        itemRepository.save(items);
-        AppUser newappuser = appUserRepository.findAppUserById(userid);
-        newappuser.additem(items);
-
-        appUserRepository.save(newappuser);
-
-         model.addAttribute("lostitem", itemRepository.findAll());
-
-        return "redirect:/";
-
-    }
     @GetMapping("/searchlostitem")
     private String searchLostItem(Model model) {
 
@@ -186,14 +204,6 @@ public class HomeController {
         return "lostitemform";
     }
 
-
-    @RequestMapping("/delete/{id}")
-    public String deleteLostItem(@PathVariable("id") long id, Model model, Authentication auth) {
-        model.addAttribute("lostitem", itemRepository.findOne(id));
-
-
-        return "redirect:/showlostitem";
-    }
 
 
 }

@@ -35,8 +35,9 @@
         <fieldset>
             <textarea placeholder="type description here...." th:field="*{description}" tabindex="5"></textarea>
         </fieldset>
+        <h4>Status</h4>
         <fieldset>
-            <input placeholder="status" type="text" th:field="*{status}" tabindex="3">
+            <input placeholder="status" type="text" th:field="*{status}" tabindex="3" disabled>
         </fieldset>
 
         <div sec:authorize="hasAuthority('ADMIN')" >

@@ -49,15 +49,14 @@ public class DataLoader implements CommandLineRunner {
         appUserRepository.save(user2);
 
 
-//        AppUser user3 = new AppUser("ted","mosby", "ted@gmail.com", "ted","pass");
-//        user3.setRoles(Arrays.asList(adminRole));
-//
-//
-//        Item item2 = new Item("cat", "http://www.catbreedslist.com/uploads/allimg/cat-pictures/Persian-Cat-1.jpg", "pet","white, persian breed","Lost");
-//        itemRepository.save(item2);
-//
-//        Item item3 = new Item("watch", "http://www.cartier.com/content/dam/rcq/car/59/07/43/590743.png","other"," cartier,leather strap","Lost" );
-//        itemRepository.save(item3);
+        AppUser user3 = new AppUser( "ted@gmail.com", "ted","pass");
+        user3.setRoles(Arrays.asList(userRole));
+        Item item3 = new Item("watch", "http://www.cartier.com/content/dam/rcq/car/59/07/43/590743.png","other"," cartier,leather strap","Lost" );
+        itemRepository.save(item3);
+        user3.additem(item3);
+        appUserRepository.save(user3);
+
+
 
 
 

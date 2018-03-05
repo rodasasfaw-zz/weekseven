@@ -21,7 +21,7 @@ public class AppUser {
     private Collection<Role> roles;
 
     @ManyToMany
-    private Collection<Item> items;
+    private Set<Item> items;
 
 
     public AppUser() {
@@ -78,11 +78,11 @@ public class AppUser {
         this.roles = roles;
     }
 
-    public Collection<Item> getItems() {
+    public Set<Item> getItems() {
         return items;
     }
 
-    public void setItems(Collection<Item> items) {
+    public void setItems(Set<Item> items) {
         this.items = items;
     }
 

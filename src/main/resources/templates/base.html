@@ -13,8 +13,9 @@
 <body>
 <div th:fragment="navlinks">
 <ul class="nav">
+
     <li class="search"><form id="searchbar" class="nav-link" th:action="@{/searchlostitem}" th:object="${lostitem}" method="post">
-        <label>Search:</label><input type="text" name="search"/>
+        <input type="text" name="search"/>
     </form>
     </li>
     <li sec:authorize="hasAnyAuthority('USER','ADMIN')" class="navItem"><a th:href="@{/}">public List</a></li>

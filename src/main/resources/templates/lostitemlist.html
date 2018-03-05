@@ -14,7 +14,7 @@
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
-<h1>Lost and Found List</h1>
+<h1>Lost Items List</h1>
 <table class="flat-table">
     <tbody>
     <tr>
@@ -22,18 +22,19 @@
         <th>Title</th>
         <th>Category</th>
         <th>Description</th>
-        <!--<th>Owner</th>-->
         <th>Status</th>
-        <th>Action</th>
+        <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Edit Form</th>
+        <th sec:authorize="hasAuthority('ADMIN')">Action</th>
+
     </tr>
     <tr th:each="item: ${lostitem}">
         <td><img th:src="${item.image}" width="50" height="50"></td>
         <td th:text="${item.title}"></td>
         <td th:text="${item.category}"></td>
         <td th:text="${item.description}"></td>
-        <!--<td th:each="appuser: ${loggedinusers}" th:text="${appuser.getname()}"></td>-->
         <td th:text ="${item.status}"></td>
-        <td><a  sec:authorize="hasAuthority('ADMIN')"th:href="@{/addfoundlistitem/{id}(id=${item.id})}"> Change Status </a></td>
+        <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a  th:href="@{/edit/{id} (id=${item.id})}">Edit Lost Item</a></td>
+        <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/addfoundlistitem/{id}(id=${item.id})}"> Change Status </a></td>
 
     </tr>
 

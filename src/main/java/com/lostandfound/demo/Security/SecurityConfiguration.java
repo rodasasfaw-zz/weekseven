@@ -27,9 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/searchlostitem","/register","/","/css/**","/js/**","/img/**","/static/**","/templates/**").permitAll()
-                .antMatchers("/addlostitem","/edit/{id}","/showadminaddeditems").hasAnyAuthority("USER","ADMIN")
-                .antMatchers().hasAuthority("USER")
-                .antMatchers("/adminaddforuser","/addfoundlistitem/{id}").hasAuthority("ADMIN")
+                .antMatchers("/addlostitem","/edit/{id}").hasAnyAuthority("USER","ADMIN")
+                .antMatchers("/addlostitem").hasAuthority("USER")
+                .antMatchers("/adminaddforuser","/addfoundlistitem/{id}","/adminlist").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().defaultSuccessUrl("/mylist").loginPage("/login").permitAll()

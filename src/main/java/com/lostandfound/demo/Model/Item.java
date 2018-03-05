@@ -13,6 +13,7 @@ public class Item {
     private String category;
     private String description;
     private String status = "Lost";
+
     @ManyToMany(mappedBy = "items")
     private Set<AppUser> appUsers;
 
@@ -85,11 +86,6 @@ public class Item {
     public void setAppUsers(Set<AppUser> appUsers) {
         this.appUsers = appUsers;
     }
-
-//    public void addappusertoItem(AppUser a){
-//
-//        this.appUsers.add(a);
-//    }
 
 }
 
