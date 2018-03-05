@@ -14,7 +14,7 @@
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
-<h1>Lost Items List</h1>
+<h1>Lost and Found</h1>
 <table class="flat-table">
     <tbody>
     <tr>
@@ -23,14 +23,17 @@
         <th>Category</th>
         <th>Description</th>
         <th>Status</th>
+        <th>Edit Form</th>
         <th>Action</th>
+
     </tr>
     <tr th:each="item: ${lostitem}">
-        <td><img th:src="${item.image}" width="50" height="50"></td>
+        <td><img th:src="${item.image!=null AND !#strings.isEmpty(item.image) ? item.image:'http://www.cartier.com/content/dam/rcq/car/59/07/43/590743.png'}" width="50" height="50"></td>
         <td th:text="${item.title}"></td>
         <td th:text="${item.category}"></td>
         <td th:text="${item.description}"></td>
         <td th:text ="${item.status}"></td>
+        <td><a sec:authorize="hasAnyAuthority('ADMIN','USER')" th:href="@{/edit/{id} (id=${item.id})}">Edit Lost Item</a></td>
         <td><a  sec:authorize="hasAuthority('ADMIN')"th:href="@{/addfoundlistitem/{id}(id=${item.id})}"> Change Status </a></td>
 
     </tr>

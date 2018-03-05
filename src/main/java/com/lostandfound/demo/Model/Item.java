@@ -9,7 +9,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
-    private String image;
+    private String image="";
     private String category;
     private String description;
     private String status = "Lost";

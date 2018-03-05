@@ -4,7 +4,8 @@
     -webkit-font-smoothing: antialiased;
     font-size: 115%;
     overflow: auto;
-    width: auto;
+    width: 100%;
+
 }
 
 th {

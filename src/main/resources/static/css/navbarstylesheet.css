@@ -2,7 +2,7 @@
     list-style-type:none;
     display:flex;
     flex-wrap: nowrap;
-    width:60%;
+    width:100%;
     background:#222;
 }
 .navItem, .navItem a {
@@ -56,4 +56,8 @@
 }
 .navItem:nth-of-type(6) a:hover {
     background:#CFCF13;
+}
+.search{
+    padding-top: 30px;
+    padding-bottom: 30px;
 }

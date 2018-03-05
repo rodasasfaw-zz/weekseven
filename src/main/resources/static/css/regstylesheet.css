@@ -33,9 +33,9 @@ h1 {
     margin-bottom: 10px;
 }
 
-html{
-    background-color: #ffffff;
-}
+/*html{*/
+    /*background-color: #ffffff;*/
+/*}*/
 
 .testbox {
     margin: 20px auto;
@@ -138,3 +138,6 @@ a.button {
 }
 
 
+body {
+    background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/IjFi-wx/moving-stars-on-black-black-background_v15aai_9__F0000.png");
+}

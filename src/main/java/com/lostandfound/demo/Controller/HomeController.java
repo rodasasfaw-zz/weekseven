@@ -88,10 +88,22 @@ public class HomeController {
         return "lostitemform";
     }
 
-    @PostMapping("/showlostitem")
-    public String showlostItem(@Valid @ModelAttribute("lostitem") Item items, Model model, BindingResult result, Authentication auth) {
+    @PostMapping("/addlostitem")
+    public String addlostItems(@Valid @ModelAttribute("lostitem") Item items, Model model, BindingResult result, Authentication auth) {
         if (result.hasErrors()) {
             return "lostitemform";
+        }
+
+ if (items.getImage().isEmpty()){
+            if(items.getCategory().equalsIgnoreCase("Clothes")){
+                items.setImage("https://getthelabel.btxmedia.com/pws/client/images/landing-pages/mens/2017/310717/knitwear.jpg");
+            }
+            if(items.getCategory().equalsIgnoreCase("Pets")){
+                items.setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxb9vQmD4Pn_OapoWNSjzf_pT5FZLa4pg60oqSuRs6QAavAAKc");
+            }
+            if(items.getCategory().equalsIgnoreCase("Other")){
+                items.setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4uFAtuoJaEjS96aI7bHq01YVojEGF3HzyxA87JynYUQ_Qy5llFA");
+            }
         }
 
         AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
@@ -102,7 +114,7 @@ public class HomeController {
         model.addAttribute("lostitem", itemRepository.findAll());
 
 
-        return "redirect:/mylist";
+        return "redirect:/";
     }
 
 
@@ -119,23 +131,6 @@ public class HomeController {
         itemRepository.save(item);
 
         return "redirect:/";
-    }
-
-
-    @RequestMapping("/edit/{id}")
-    public String editlostItem(@PathVariable("id") long id, Model model, Authentication auth) {
-
-        model.addAttribute("lostitem", itemRepository.findOne(id));
-
-        return "lostitemform";
-    }
-
-
-    @RequestMapping("/delete/{id}")
-    public String deleteLostItem(@PathVariable("id") long id, Model model, Authentication auth) {
-        model.addAttribute("lostitem", itemRepository.findOne(id));
-
-        return "redirect:/showlostitem";
     }
 
     @GetMapping("/adminaddforuser")
@@ -157,7 +152,7 @@ public class HomeController {
         }
         itemRepository.save(items);
         AppUser newappuser = appUserRepository.findAppUserById(userid);
-newappuser.additem(items);
+        newappuser.additem(items);
 
         appUserRepository.save(newappuser);
 
@@ -166,11 +161,39 @@ newappuser.additem(items);
         return "redirect:/";
 
     }
+    @GetMapping("/searchlostitem")
+    private String searchLostItem(Model model) {
+
+        model.addAttribute("lostitem", new Item());
+
+        return "base";
+    }
     @PostMapping("/searchlostitem")
     public String showSearchResults(HttpServletRequest request, Model model){
-        String query = request.getParameter("search");
-        model.addAttribute("search", query);
-        model.addAttribute("searchlostitem", itemRepository.findAll());
+        String searchCategory = request.getParameter("search");
+        model.addAttribute("search", searchCategory);
+        model.addAttribute("searchlostitem", itemRepository.findAllByCategoryContainingIgnoreCase(searchCategory));
         return "searchresult";
     }
+
+
+    @RequestMapping("/edit/{id}")
+    public String editlostItem(@PathVariable("id") long id, Model model){
+
+       Item item = itemRepository.findOne(id);
+        model.addAttribute("lostitem", item);
+
+        return "lostitemform";
+    }
+
+
+    @RequestMapping("/delete/{id}")
+    public String deleteLostItem(@PathVariable("id") long id, Model model, Authentication auth) {
+        model.addAttribute("lostitem", itemRepository.findOne(id));
+
+
+        return "redirect:/showlostitem";
+    }
+
+
 }

@@ -10,6 +10,5 @@ public interface ItemRepository extends CrudRepository<Item,Long> {
  Iterable<Item> findByAppUsers(AppUser appUsers);
  Iterable<Item> findAllByTitleContainingIgnoreCase(String title);
  Iterable<Item> findAllByStatus(String status);
-
-
+ Iterable<Item>findAllByCategoryContainingIgnoreCase(String category);
 }

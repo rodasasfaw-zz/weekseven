@@ -26,8 +26,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/register","/","/css/**","/js/**","/img/**","/static/**","/templates/**").permitAll()
-                .antMatchers("/addlostitem").hasAnyAuthority("USER","ADMIN")
+                .antMatchers("/searchlostitem","/register","/","/css/**","/js/**","/img/**","/static/**","/templates/**").permitAll()
+                .antMatchers("/addlostitem","/edit/{id}","/showadminaddeditems").hasAnyAuthority("USER","ADMIN")
+                .antMatchers().hasAuthority("USER")
+                .antMatchers("/adminaddforuser","/addfoundlistitem/{id}").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().defaultSuccessUrl("/mylist").loginPage("/login").permitAll()
