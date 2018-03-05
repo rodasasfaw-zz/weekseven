@@ -18,12 +18,12 @@
         <input type="text" name="search"/>
     </form>
     </li>
+    <li class="navItem"><a th:href="@{/login}" sec:authorize="isAnonymous()">Sign in</a></li>
     <li sec:authorize="hasAnyAuthority('USER','ADMIN')" class="navItem"><a th:href="@{/}">public List</a></li>
     <li sec:authorize="hasAuthority('ADMIN')" class="navItem"><a th:href="@{/adminlist}">Admin list</a></li>
     <li  sec:authorize="hasAuthority('USER')" class="navItem"><a th:href="@{/addlostitem}">Add lost item</a></li>
     <li  sec:authorize="hasAuthority('ADMIN')" class="navItem"><a th:href="@{/adminaddforuser}">Add lost  item as admin</a></li>
     <li sec:authorize="hasAuthority('USER')" class="navItem"><a th:href="@{/mylist}">My List</a></li>
-    <li class="navItem"><a th:href="@{/login}">Sign in</a></li>
     <li sec:authorize="hasAnyAuthority('USER','ADMIN')" class="navItem"><a th:href="@{/logout}">Sign out</a></li>
 </ul>
 
