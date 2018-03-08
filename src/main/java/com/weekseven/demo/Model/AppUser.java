@@ -1,4 +1,4 @@
-package com.lostandfound.demo.Model;
+package com.weekseven.demo.Model;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -19,14 +19,16 @@ public class AppUser {
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name="role_id"))
     private Collection<Role> roles;
-
     @ManyToMany
-    private Set<Item> items;
+    private Collection<NewsCategory> newsCategories;
+
+
 
 
     public AppUser() {
        this.roles = new HashSet<>();
-       this.items = new HashSet<>();
+       this.newsCategories=new HashSet<>();
+
     }
 
     public AppUser( String email, String username, String password) {
@@ -35,7 +37,8 @@ public class AppUser {
         this.username = username;
         this.password = password;
         this.roles = new HashSet<>();
-        this.items = new HashSet<>();
+        this.newsCategories=new HashSet<>();
+
     }
 
     public long getId() {
@@ -78,22 +81,15 @@ public class AppUser {
         this.roles = roles;
     }
 
-    public Set<Item> getItems() {
-        return items;
-    }
 
-    public void setItems(Set<Item> items) {
-        this.items = items;
-    }
 
     public void addRole(Role r) {
 
         roles.add(r);
     }
+public void addnewsCategory(NewsCategory n){
+        newsCategories.add(n);
+}
 
-    public void additem(Item i){
-
-        this.items.add(i);
-    }
 }
 

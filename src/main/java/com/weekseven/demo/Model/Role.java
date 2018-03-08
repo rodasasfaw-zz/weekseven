@@ -1,8 +1,7 @@
-package com.lostandfound.demo.Model;
+package com.weekseven.demo.Model;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.HashSet;
 
 @Entity
 public class Role {

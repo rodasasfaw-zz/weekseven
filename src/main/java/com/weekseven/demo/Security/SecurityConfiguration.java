@@ -1,6 +1,6 @@
-package com.lostandfound.demo.Security;
+package com.weekseven.demo.Security;
 
-import com.lostandfound.demo.Repository.AppUserRepository;
+import com.weekseven.demo.Repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,13 +26,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/searchlostitem","/register","/","/css/**","/js/**","/img/**","/static/**","/templates/**").permitAll()
-                .antMatchers("/addlostitem","/edit/{id}").hasAnyAuthority("USER","ADMIN")
-                .antMatchers("/addlostitem").hasAuthority("USER")
-                .antMatchers("/adminaddforuser","/addfoundlistitem/{id}","/adminlist").hasAuthority("ADMIN")
+                .antMatchers("/register","/","/css/**","/js/**","/img/**","/static/**","/templates/**").permitAll()
+                .antMatchers().hasAnyAuthority("USER","ADMIN")
+                .antMatchers().hasAuthority("USER")
+                .antMatchers().hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().defaultSuccessUrl("/mylist").loginPage("/login").permitAll()
+                .formLogin().defaultSuccessUrl("/").loginPage("/login").permitAll()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

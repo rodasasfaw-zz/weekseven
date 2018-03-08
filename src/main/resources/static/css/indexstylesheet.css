@@ -1,0 +1,142 @@
+.header-logo{
+    text-align: center;
+    font-family: georgia, times, serif;
+}
+
+.header-search{
+    text-align: right;
+}
+
+.header-date{
+    text-align: center;
+    font-size:12px;
+}
+.header-nav{
+    text-align: center;
+
+}
+
+.header-link{
+    margin-left: 10px;
+    margin-right: 10px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.hero-news{
+    height: 500px;
+    background: url(https://cdn.cnn.com/cnnnext/dam/assets/180221173036-donald-trump-listening-session-february-21-2018-01-exlarge-169.jpg) no-repeat center center / cover;
+    margin-bottom: 60px;
+    padding: 40px;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+}
+
+.hero-news2{
+    height: 500px;
+    background: url(https://static01.nyt.com/images/2018/02/21/us/21Harrison1_xp/21Harrison1_xp-master768.jpg) no-repeat center center / cover;
+    margin-bottom: 60px;
+    padding: 40px;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+}
+
+.hero-news3{
+    height: 500px;
+    background: url(https://static01.nyt.com/images/2018/02/21/us/21harrison2_xp/21harrison2_xp-master768-v2.jpg) no-repeat center center / cover;
+    margin-bottom: 60px;
+    padding: 40px;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+}
+
+.featured-news{
+    height: 400px;
+    background: url(https://static01.nyt.com/images/2018/02/18/world/americas/18brazilfakenews1/merlin_132849104_3a39a88e-7477-47c8-bd6d-761414f8e92f-master1050.jpg) no-repeat center center / cover ;
+    margin-bottom: 60px;
+    padding: 40px;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+}
+
+.featured-news-small1{
+    background: white;
+    color: black;
+    font-family: georgia, times, serif;
+    font-size: 18px;
+
+
+}
+
+.hero-news-title{
+    font-family: georgia, times, serif;
+    font-size: 18px;
+}
+
+.hero-news-title2{
+    font-family: georgia, times, serif;
+    font-size: 18px;
+}
+
+.hero-news-title3{
+    font-family: georgia, times, serif;
+    font-size: 18px;
+}
+
+.title{
+    text-align: center;
+    font-family: georgia, times, serif;
+}
+
+.read{
+    font-family: georgia, times, serif;
+    font-size: 10px;
+}
+
+.title2{
+    text-align: center;
+    font-family: georgia, times, serif;
+}
+
+.featured-news2{
+    height: 400px;
+    background: url(https://static01.nyt.com/images/2018/02/18/world/americas/18brazilfakenews1/merlin_132849104_3a39a88e-7477-47c8-bd6d-761414f8e92f-master1050.jpg) no-repeat center center / cover ;
+    margin-bottom: 60px;
+    padding: 40px;
+    color: white;
+    display:contents;
+    align-items: center;
+}
+
+.hero-news-title4{
+    color: white;
+    display: contents;
+    align-items: center;
+    font-size:30px;
+
+}
+
+.hero-news-title5{
+    color: white;
+    display:flex;
+    align-items: center;
+    font-family: helvetica;
+    font-size: 25px
+}
+
+.title6{
+    height: 400px;
+
+    margin-bottom: 60px;
+    padding: 40px;
+    font-family: georgia, times, serif;
+
+}
+
+
+
+

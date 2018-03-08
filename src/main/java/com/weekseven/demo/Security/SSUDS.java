@@ -1,9 +1,9 @@
-package com.lostandfound.demo.Security;
+package com.weekseven.demo.Security;
 
 
-import com.lostandfound.demo.Model.AppUser;
-import com.lostandfound.demo.Model.Role;
-import com.lostandfound.demo.Repository.AppUserRepository;
+import com.weekseven.demo.Model.AppUser;
+import com.weekseven.demo.Model.Role;
+import com.weekseven.demo.Repository.AppUserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

@@ -1,7 +1,6 @@
-package com.lostandfound.demo.Repository;
+package com.weekseven.demo.Repository;
 
-import com.lostandfound.demo.Model.AppUser;
-import com.lostandfound.demo.Model.Role;
+import com.weekseven.demo.Model.Role;
 import org.springframework.data.repository.CrudRepository;
 
 public interface RoleRepository  extends CrudRepository<Role, Long>{

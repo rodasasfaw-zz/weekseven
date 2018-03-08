@@ -1,4 +1,4 @@
-package com.lostandfound.demo;
+package com.weekseven.demo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
