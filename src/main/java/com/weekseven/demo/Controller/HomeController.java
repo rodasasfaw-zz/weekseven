@@ -1,11 +1,13 @@
 package com.weekseven.demo.Controller;
 
 import com.weekseven.demo.Model.AppUser;
-import com.weekseven.demo.Model.Articles;
+
+import com.weekseven.demo.Model.NewsApi;
+import com.weekseven.demo.Model.Profile;
 import com.weekseven.demo.Repository.AppUserRepository;
+import com.weekseven.demo.Repository.ProfileRepository;
 import com.weekseven.demo.Repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,17 +23,12 @@ public class HomeController {
     RoleRepository roleRepository;
     @Autowired
     AppUserRepository appUserRepository;
+    @Autowired
+    ProfileRepository profileRepository;
 
 
 
-//    @RequestMapping("/")
-//    public String index(Model model, Authentication auth) {
-//
-//
-//
-//        return "index";
-//
-//    }
+
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -56,12 +53,29 @@ public class HomeController {
     }
 
         @GetMapping("/")
-        public @ResponseBody String showNews(){
-            RestTemplate restTemplate = new RestTemplate();
-            Articles article = restTemplate.getForObject("https://newsapi.org/v2/top-headlines?country=us&apiKey=b4a688706b10461dac7feec1fd2e3e70", Articles.class);
+        public String showNews(@Valid @ModelAttribute("newsApi") NewsApi newsApis, Model model){
 
-            return article.getValue().getTitle();
+            RestTemplate restTemplate = new RestTemplate();
+            newsApis = restTemplate.getForObject("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=d4a451c5d3c74eda940441948d032ab5", NewsApi.class);
+           model.addAttribute("article",newsApis.getArticles());
+
+            return "index";
         }
 
+        @GetMapping("/selectcategory")
+        public String selectCategory(Model model){
+        model.addAttribute("profile",new Profile());
+        return "selectcategory";
+
+        }
+        @GetMapping("/{category}")
+        public String PoliticsNews(@PathVariable("category") String category,@Valid @ModelAttribute("newsApi") NewsApi newsApis, Model model){
+
+            RestTemplate restTemplate = new RestTemplate();
+            newsApis = restTemplate.getForObject("https://newsapi.org/v2/top-headlines?"+category+"&apiKey=d4a451c5d3c74eda940441948d032ab5", NewsApi.class);
+            model.addAttribute("article",newsApis.getArticles());
+
+            return "userdisplay";
+        }
 
 }

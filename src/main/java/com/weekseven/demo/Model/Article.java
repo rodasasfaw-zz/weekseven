@@ -2,17 +2,34 @@ package com.weekseven.demo.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.util.Date;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Articles {
+public class Article {
+    private Source  source;
+    private String publishedAt;
+
     private String author;
-    private String title;
-    private String description;
-    private String url;
+
     private String urlToImage;
-    private Date publishedAt;
-    private Value value;
+
+    private String title;
+
+
+    private String description;
+
+    private String url;
+
+    public Article() {
+    }
+
+    public String getPublishedAt() {
+        return publishedAt;
+    }
+
+    public void setPublishedAt(String publishedAt) {
+        this.publishedAt = publishedAt;
+    }
 
     public String getAuthor() {
         return author;
@@ -22,12 +39,28 @@ public class Articles {
         this.author = author;
     }
 
+    public String getUrlToImage() {
+        return urlToImage;
+    }
+
+    public void setUrlToImage(String urlToImage) {
+        this.urlToImage = urlToImage;
+    }
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Source getSource() {
+        return source;
+    }
+
+    public void setSource(Source source) {
+        this.source = source;
     }
 
     public String getDescription() {
@@ -46,40 +79,16 @@ public class Articles {
         this.url = url;
     }
 
-    public String getUrlToImage() {
-        return urlToImage;
-    }
-
-    public void setUrlToImage(String urlToImage) {
-        this.urlToImage = urlToImage;
-    }
-
-    public Date getPublishedAt() {
-        return publishedAt;
-    }
-
-    public void setPublishedAt(Date publishedAt) {
-        this.publishedAt = publishedAt;
-    }
-
-    public Value getValue() {
-        return value;
-    }
-
-    public void setValue(Value value) {
-        this.value = value;
-    }
-
     @Override
     public String toString() {
-        return "Articles{" +
-                "author='" + author + '\'' +
+        return "Article{" +
+                "publishedAt='" + publishedAt + '\'' +
+                ", author='" + author + '\'' +
+                ", urlToImage='" + urlToImage + '\'' +
                 ", title='" + title + '\'' +
+                ", source=" + source +
                 ", description='" + description + '\'' +
                 ", url='" + url + '\'' +
-                ", urlToImage='" + urlToImage + '\'' +
-                ", publishedAt=" + publishedAt +
-                ", value=" + value +
                 '}';
     }
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<form  id = "contact"  th:action="@{/{category}(category=${profile.category})}"  th:object="${profile}" method="post">
+
+    <h4>Lost Item information</h4>
+    <input type="hidden" th:field="*{id}"/>
+
+
+    <h4>Select Category</h4>
+    <select th:field="*{category}" name="category">
+        <option value="Business">Business</option>
+        <option value="sport">Sport</option>
+        <option value="Tech">Tech</option>
+        <option value="Politics">Politics</option>
+        <option value="Entertainment">Entertainment</option>
+    </select>
+
+
+
+
+
+    <fieldset>
+        <button type="submit" id="contact-submit"  data-submit="...Sending">Submit</button>
+    </fieldset>
+</form>
+</body>
+</html>

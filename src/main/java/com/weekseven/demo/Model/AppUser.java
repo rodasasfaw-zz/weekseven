@@ -3,7 +3,6 @@ package com.weekseven.demo.Model;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class AppUser {
@@ -20,14 +19,14 @@ public class AppUser {
             inverseJoinColumns = @JoinColumn(name="role_id"))
     private Collection<Role> roles;
     @ManyToMany
-    private Collection<NewsCategory> newsCategories;
+    private Collection<Profile> profiles;
 
 
 
 
     public AppUser() {
        this.roles = new HashSet<>();
-       this.newsCategories=new HashSet<>();
+       this.profiles=new HashSet<>();
 
     }
 
@@ -37,7 +36,7 @@ public class AppUser {
         this.username = username;
         this.password = password;
         this.roles = new HashSet<>();
-        this.newsCategories=new HashSet<>();
+        this.profiles=new HashSet<>();
 
     }
 
@@ -87,8 +86,8 @@ public class AppUser {
 
         roles.add(r);
     }
-public void addnewsCategory(NewsCategory n){
-        newsCategories.add(n);
+public void addprofile(Profile n){
+        profiles.add(n);
 }
 
 }

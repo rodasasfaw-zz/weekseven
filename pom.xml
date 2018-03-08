@@ -68,7 +68,12 @@
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 			<version>2.1.2.RELEASE</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>net.minidev</groupId>
+            <artifactId>accessors-smart</artifactId>
+            <version>1.1</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

@@ -2,10 +2,10 @@ package com.weekseven.demo.DataLoader;
 
 
 import com.weekseven.demo.Model.AppUser;
-import com.weekseven.demo.Model.NewsCategory;
+import com.weekseven.demo.Model.Profile;
 import com.weekseven.demo.Model.Role;
 import com.weekseven.demo.Repository.AppUserRepository;
-import com.weekseven.demo.Repository.NewsCategoryRepository;
+import com.weekseven.demo.Repository.ProfileRepository;
 import com.weekseven.demo.Repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,7 +22,7 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     RoleRepository roleRepository;
     @Autowired
-    NewsCategoryRepository newsCategoryRepository;
+    ProfileRepository profileRepository;
 
 
     @Override
@@ -38,24 +38,24 @@ public class DataLoader implements CommandLineRunner {
 
         AppUser user1 = new AppUser("rodas4@gmail.com","rod","pass");
         user1.setRoles(Arrays.asList(userRole));
-        NewsCategory newsCategory=new NewsCategory("sport");
-        newsCategoryRepository.save(newsCategory);
-        user1.addnewsCategory(newsCategory);
+        Profile profile =new Profile("sport");
+        profileRepository.save(profile);
+        user1.addprofile(profile);
         appUserRepository.save(user1);
 
         AppUser user2 = new AppUser("sam@gmail.com", "sam","pass");
         user2.setRoles(Arrays.asList(userRole));
-        NewsCategory newsCategory2=new NewsCategory("World news");
-        newsCategoryRepository.save(newsCategory2);
-        user2.addnewsCategory(newsCategory2);
+        Profile profile2 =new Profile("World news");
+        profileRepository.save(profile2);
+        user2.addprofile(profile2);
         appUserRepository.save(user2);
 
 
         AppUser user3 = new AppUser( "ted@gmail.com", "ted","pass");
         user3.setRoles(Arrays.asList(userRole));
-        NewsCategory newsCategory3=new NewsCategory("politics");
-        newsCategoryRepository.save(newsCategory3);
-        user3.addnewsCategory(newsCategory3);
+        Profile profile3 =new Profile("politics");
+        profileRepository.save(profile3);
+        user3.addprofile(profile3);
         appUserRepository.save(user3);
 
 
