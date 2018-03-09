@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.tymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>News Api</title>
+</head>
+<body>
+<div th:replace="index :: navbar"></div>
+<div align="center">
+<form  id = "contact" action="#" th:action="@{/addmytopic}"  th:object="${mytopic}" method="post">
+
+    <h4>Add a topic</h4>
+    <input type="hidden" th:field="*{id}"/>
+
+    <fieldset>
+        <input placeholder="topic" type="text" th:field="*{topic}" tabindex="2">
+    </fieldset>
+
+    <fieldset>
+        <input placeholder="news Name" type="text" th:field="*{newsName}" tabindex="2">
+    </fieldset>
+    <fieldset>
+        <input placeholder="category" type="text" th:field="*{category}" tabindex="2">
+    </fieldset>
+
+
+
+    <fieldset>
+        <button type="submit" id="contact-submit"  data-submit="...Sending">Submit</button>
+    </fieldset>
+</form>
+</div>
+</body>
+</html>

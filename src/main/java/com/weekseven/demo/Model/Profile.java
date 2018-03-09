@@ -13,14 +13,16 @@ public class Profile {
    @ManyToMany(mappedBy = "profiles")
     private Collection<AppUser> appusers;
    private String category;
+   private String topic;
 
     public Profile(){
         this.appusers=new HashSet<>();
     }
 
-    public Profile(String newsName) {
+    public Profile(String newsName, String category, String topic) {
         this.newsName = newsName;
-        this.category=category;
+        this.category = category;
+        this.topic = topic;
         this.appusers=new HashSet<>();
     }
 
@@ -46,6 +48,14 @@ public class Profile {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 
     public Collection<AppUser> getAppusers() {

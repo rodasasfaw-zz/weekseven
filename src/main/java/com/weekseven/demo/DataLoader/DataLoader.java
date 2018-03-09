@@ -38,14 +38,14 @@ public class DataLoader implements CommandLineRunner {
 
         AppUser user1 = new AppUser("rodas4@gmail.com","rod","pass");
         user1.setRoles(Arrays.asList(userRole));
-        Profile profile =new Profile("sport");
+        Profile profile =new Profile("sport","sport","football");
         profileRepository.save(profile);
         user1.addprofile(profile);
         appUserRepository.save(user1);
 
         AppUser user2 = new AppUser("sam@gmail.com", "sam","pass");
         user2.setRoles(Arrays.asList(userRole));
-        Profile profile2 =new Profile("World news");
+        Profile profile2 =new Profile("World news","business","oil");
         profileRepository.save(profile2);
         user2.addprofile(profile2);
         appUserRepository.save(user2);
@@ -53,7 +53,7 @@ public class DataLoader implements CommandLineRunner {
 
         AppUser user3 = new AppUser( "ted@gmail.com", "ted","pass");
         user3.setRoles(Arrays.asList(userRole));
-        Profile profile3 =new Profile("politics");
+        Profile profile3 =new Profile("politics", "US", "economy");
         profileRepository.save(profile3);
         user3.addprofile(profile3);
         appUserRepository.save(user3);

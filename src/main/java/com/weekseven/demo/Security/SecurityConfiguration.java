@@ -26,13 +26,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/register","/","/css/**","/js/**","/img/**","/static/**","/templates/**").permitAll()
-                .antMatchers().hasAnyAuthority("USER","ADMIN")
+                .antMatchers("/register","/","/css/**","/js/**","/img/**","/static/**","/templates/**","/searchtopic","/abc","/fox","/cnn","/msnbc").permitAll()
+                .antMatchers("/selectcategory","/{category}","/mytopiclist","/addmytopic").hasAnyAuthority("USER","ADMIN")
                 .antMatchers().hasAuthority("USER")
                 .antMatchers().hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().defaultSuccessUrl("/selectcategory").loginPage("/login").permitAll()
+                .formLogin().defaultSuccessUrl("/mytopiclist").loginPage("/login").permitAll()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

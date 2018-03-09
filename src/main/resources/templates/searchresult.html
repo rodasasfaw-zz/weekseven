@@ -3,41 +3,60 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/liststylesheet.css">
-    <link rel="stylesheet" href="css/liststylesheet.css">
-    <link rel="stylesheet" href="css/navbarstylesheet.css">
-    <link rel="stylesheet" href="../static/css/navbarstylesheet.css">
-    <link rel="stylesheet" href="../static/css/loginstylesheet.css">
-    <link rel="stylesheet" href="css/loginstylesheet.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../static/css/indexstylesheet.css">
+    <link rel="stylesheet" href="css/indexstylesheet.css">
 
 </head>
 <body>
-<div th:replace="base :: navlinks"></div>
-<h1>Lost Items List</h1>
-<table class="flat-table">
-    <tbody>
-    <tr>
-        <th>Image</th>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Action</th>
-    </tr>
-    <tr th:each="item: ${searchlostitem}">
-        <td><img th:src="${item.image}" width="50" height="50"></td>
-        <td th:text="${item.title}"></td>
-        <td th:text="${item.category}"></td>
-        <td th:text="${item.description}"></td>
-        <td th:text ="${item.status}"></td>
-        <td><a  sec:authorize="hasAuthority('ADMIN')"th:href="@{/addfoundlistitem/{id}(id=${item.id})}"> Change Status </a></td>
+<div class="container" th:fragment="navbar">
+    <div class="header">
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6 header-logo">
+                <h1>World News</h1>
+                <hr>
+            </div>
+            <div class="col-md-3 header-search">
+                <i class="fa fa-search"></i>
+                <span class="search"><form id="searchbar" class="nav-link" th:action="@{/searchtopic}" th:object="${article}" method="post">
+                    <input type="text" name="search" placeholder="Search"/>
+                </form>
+                </span>
+            </div>
 
-    </tr>
+        </div>
+        <div class="row">
+            <div class="col-md-12 header-nav">
+                <a th:href="@{/}" class="header-link">HOME</a>
+                <a th:href="@{/cnn}" class="header-link">CNN</a>
+                <a th:href="@{/fox}" class="header-link">Fox News</a>
+                <a th:href="@{/abc}" class="header-link">ABC</a>
+                <a th:href="@{/msnbc}" class="header-link">MSNBC</a>
+                <a th:href="@{/selectcategory}" class="header-link">CATEGORY</a>
+                <a th:href="@{/login}" class="header-link"  sec:authorize="isAnonymous()">LOG IN</a>
+                <a th:href="@{/logout}" class="header-link" sec:authorize="hasAnyAuthority('USER','ADMIN')">LOG OUT</a>
+            </div>
+            <hr>
+        </div>
+    </div>
 
-    </tbody>
-</table>
+<div align="center">
+    <div th:each="article: ${searchtopic}">
+        <h3  th:text="${article.title}"></h3><br/>
+        <img th:src="${article.urlToImage}" width="500" height="450"></br>
+        <br/>
+        <h5 th:text="${article.author}"></h5><br/>
+        <p th:text="${article.description}"></p><br/>
+        <span th:inline="text"> <a th:href="${article.url}">[[${article.url}]]</a></span><br/>
+        <span  th:text="${article.publishedAt}"></span>
+    </div>
+</div>
 
-<div th:replace="base :: js"></div>
+</div>
+<div th:replace="index :: js"></div>
 </body>
 </html>
