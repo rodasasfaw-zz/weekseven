@@ -57,7 +57,7 @@ public class HomeController {
         public String showNews(@Valid @ModelAttribute("newsApi") NewsApi newsApis, Model model){
 
             RestTemplate restTemplate = new RestTemplate();
-            newsApis = restTemplate.getForObject("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=d4a451c5d3c74eda940441948d032ab5", NewsApi.class);
+            newsApis = restTemplate.getForObject("https://newsapi.org/v2/top-headlines?country=us&apiKey=d4a451c5d3c74eda940441948d032ab5", NewsApi.class);
            model.addAttribute("article",newsApis.getArticles());
 
             return "index";

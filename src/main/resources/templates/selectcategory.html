@@ -12,13 +12,14 @@
 
 <div class="container" th:replace="index :: navbar">
 </div>
+<div align="center">
 <form  id = "contact"  th:action="@{/{category}}"  th:object="${profile}" method="post">
 
     <h4>Topics</h4>
     <input type="hidden" th:field="*{id}"/>
 
 
-    <h4>Select Topic</h4>
+    <h4>Select News Category</h4>
     <select th:field="*{category}" name="category">
         <option value="Business"> business </option>
         <option value="Entertainment">entertainment </option>
@@ -36,5 +37,6 @@
         <button type="submit" id="contact-submit"  data-submit="...Sending">Submit</button>
     </fieldset>
 </form>
+</div>
 </body>
 </html>

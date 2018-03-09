@@ -21,38 +21,39 @@
             </div>
             <div class="col-md-3 header-search">
                 <i class="fa fa-search"></i>
-                March 3,2018
+
             </div>
             <div class="col-md-12 header-date">
-
+                March 3,2018
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 header-nav">
+                <a href="/" class="header-link">Home</a>
                 <a href="#" class="header-link">Politics</a>
                 <a href="#" class="header-link">Sport</a>
                 <a th:href="@{/entertainment}" class="header-link">Entertainment</a>
                 <a href="#" class="header-link">Business</a>
                 <a href="#" class="header-link">US News</a>
                 <a th:href="@{/selectcategory}" class="header-link">Topics</a>
+                <a th:href="@{/login}" class="header-link">Login</a>
             </div>
             <hr>
         </div>
     </div>
+    <div align="center">
     <div th:each="article: ${article}">
-
-        <span  th:text="${article.author}"></span><br/>
-        <span  th:text="${article.title}"></span><b/>
-        <span th:text="${article.description}"></span><br/>
-        <span th:href="${article.url}"></span><b/>
-        <span><img th:src="${article.urlToImage}" width="150" height="150"></span><br/>
+        <h3  th:text="${article.title}"></h3><br/>
+        <img th:src="${article.urlToImage}" width="300" height="300"></br>
+        <h5 th:text="${article.author}"></h5><br/>
+        <p th:text="${article.description}"></p><br/>
+        <a th:text="${article.url}"></a><br/>
         <span  th:text="${article.publishedAt}"></span>
 
 
 
-
+    </div>
     </div>
 </div>
-
 </body>
 </html>
