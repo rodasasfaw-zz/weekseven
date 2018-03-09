@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<div class="container">
+<div class="container" th:fragment="navbar">
     <div class="header">
         <div class="row">
             <div class="col-md-3">
@@ -21,18 +21,20 @@
             </div>
             <div class="col-md-3 header-search">
                 <i class="fa fa-search"></i>
+                March 3,2018
             </div>
             <div class="col-md-12 header-date">
-                Martes 30 de Enero
+
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 header-nav">
                 <a href="#" class="header-link">Politics</a>
                 <a href="#" class="header-link">Sport</a>
-                <a href="#" class="header-link">Entertainment</a>
+                <a th:href="@{/entertainment}" class="header-link">Entertainment</a>
                 <a href="#" class="header-link">Business</a>
                 <a href="#" class="header-link">US News</a>
+                <a th:href="@{/selectcategory}" class="header-link">Topics</a>
             </div>
             <hr>
         </div>

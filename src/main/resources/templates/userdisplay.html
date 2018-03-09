@@ -10,45 +10,20 @@
 
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <div class="row">
-            <div class="col-md-3">
-            </div>
-            <div class="col-md-6 header-logo">
-                <h1>World News</h1>
-                <hr>
-            </div>
-            <div class="col-md-3 header-search">
-                <i class="fa fa-search"></i>
-            </div>
-            <div class="col-md-12 header-date">
-                Martes 30 de Enero
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 header-nav">
-                <a href="#" class="header-link">Politics</a>
-                <a href="#" class="header-link">Sport</a>
-                <a href="#" class="header-link">Entertainment</a>
-                <a href="#" class="header-link">Business</a>
-                <a href="#" class="header-link">US News</a>
-            </div>
-            <hr>
-        </div>
+<div class="container" th:replace="index :: navbar">
     </div>
     <div th:each="article: ${article}">
 
         <span  th:text="${article.author}"></span><br/>
-        <span  th:text="${article.title}"></span><b/>
+        <span  th:text="${article.title}"></span><br/>
         <span th:text="${article.description}"></span><br/>
-        <span th:href="${article.url}"></span><b/>
+        <span th:text="${article.url}"></span><br/>
         <span><img th:src="${article.urlToImage}" width="150" height="150"></span><br/>
         <span  th:text="${article.publishedAt}"></span>
 
 
 
-
+        <a th:href="@{/selectcategory}">Select Category</a>
     </div>
 </div>
 
